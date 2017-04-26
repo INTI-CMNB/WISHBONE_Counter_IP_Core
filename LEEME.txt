@@ -1,0 +1,44 @@
+Copyright (c) 2005 Juan Pablo D. Borgna <jpborgna en inti.gov.ar>
+Copyright (c) 2006 Salvador E. Tropea <salvador en inti gov ar>
+Copyright (c) 2005-2006 Instituto Nacional de Tecnología Industrial
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ 02111-1307, USA
+
+  Este es un contador que genera un pulso de la duración de un pulso de clock
+luego de una cantidad preestablecida de pulsos.
+  Posee dos registros de 8 bits para indicar el valor de cuenta. A través
+de un generic es posible configurarlo para que sea de 16 a 8 bits.
+  El orden de carga debe ser el byte alto y luego el bajo ya que al cargar el
+byte bajo comienza el conteo. En este proceso de carga del contador se pierde el
+primer pulso a contar.
+
+Registros:
+----------
+
+Son de 8 bits.
+
+Dirección | Modo | Nombre      | Descripción
+-----------------------------------------------------------------------------
+    0     |   W  | SCOUNTER_LO | Divisor Low
+-----------------------------------------------------------------------------
+    1     |   W  | SCOUNTER_HI | Divisor High
+-----------------------------------------------------------------------------
+
+Generics:
+---------
+
+MOD_WIDTH integer range 9 to 16:=16; -- Bits del contador (9 a 16)
+MOD_START : integer:=0;              -- Valor inicial del divisor luego de rst
+
